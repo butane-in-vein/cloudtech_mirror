@@ -13,7 +13,12 @@ func GetExchange(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "application/json")
-	countryUrl := "http://129.241.150.113:8080/v3.1/alpha/" + r.PathValue("code") + "?fields=name,borders,currencies"
+	countryCode := r.PathValue("code")
+	if len(countryCode) != 2 {
+		http.Error(w, "Country codes are 2 letters only.", http.StatusBadRequest)
+		return
+	}
+	countryUrl := "http://129.241.150.113:8080/v3.1/alpha/" + countryCode + "?fields=name,borders,currencies"
 	countryResp, err := http.Get(countryUrl)
 	if err != nil {
 		http.Error(w, "Error connecting to RestCountries API", http.StatusBadGateway)
