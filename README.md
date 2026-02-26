@@ -1,3 +1,4 @@
+thsi repo is a lie i never even bothered to mirror that shit >:D
 # Assignment 1 PROG2005
 Gabriel Brindle
 
